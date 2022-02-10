@@ -8,11 +8,12 @@ using DogApp.Models;
 
 namespace DogApp.Data
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public class ApplicationDbContext : IdentityDbContext<DogsUser>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+            this.Database.EnsureDeleted();
             this.Database.EnsureCreated();
         }
         public DbSet<Dog> Dogs { get; set; }
